@@ -1,5 +1,7 @@
 <html>
   <head>
+    <link rel="stylesheet" href="styles.css" />
+
     <meta charset="utf-8" />
     <script src="wasm_exec.js"></script>
     <script>
@@ -14,14 +16,48 @@
   </head>
 
   <body>
-    <div>
-      <label for="url">URL:</label>
-      <input type="text" id="url" name="url" /><br /><br />
-
-      <button id="create-button">URL Ghoster</button>
-
-      <p id="short-url"></p>
+    <div class="name-container">
+      <h1>Ghost Url 👻</h1>
     </div>
+
+    <div class="container">
+      <div class="input-container">
+        <div class="error-message-container">
+          <h1 id="error-message">Please enter a url</h1>
+        </div>
+
+        <div class="webflow-style-input">
+          <input
+            type="text"
+            id="url"
+            name="url"
+            placeholder="type url here..."
+          />
+        </div>
+
+        <div class="button-container">
+          <a href="#" class="animated-button" id="create-button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            👻 ghost
+          </a>
+        </div>
+
+        <div class="text-container webflow-style-input copy-text">
+          <span id="short-url">asdsadasd</span>
+          <a href="#" class="animated-button copy-button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            copy
+          </a>
+        </div>
+      </div>
+    </div>
+
     <script>
       var url = document.querySelector("#url");
       var short_url = document.querySelector("#short-url");

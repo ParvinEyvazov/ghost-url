@@ -7,6 +7,9 @@ unsetup:
 build:
 	GOOS=js GOARCH=wasm go build -o static/main.wasm cmd/wasm/main.go
 
+smallcss: 
+	echo "go to https://www.textfixer.com/tools/remove-line-breaks.php"
+
 run:
 	go run ./cmd/webserver/main.go
 

@@ -1,4 +1,4 @@
-module github.com/ParvinEyvazov/shortier
+module github.com/ParvinEyvazov/ghost-url
 
 go 1.18
 
