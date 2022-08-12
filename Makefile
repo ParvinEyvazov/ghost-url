@@ -13,9 +13,17 @@ smallcss:
 run:
 	go run ./cmd/webserver/main.go
 
+runlive:
+	nodemon --exec go run ./cmd/webserver/main.go --signal SIGTERM
+
 br:
 	make build
 	make run
+
+
+brlive:
+	make build
+	nodemon --exec go run ./cmd/webserver/main.go --signal SIGTERM
 
 git:
 	mv static/wasm_exec.js static/wasm_exec.js.disabled

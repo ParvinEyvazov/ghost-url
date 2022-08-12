@@ -2,6 +2,9 @@ package main
 
 import (
 	"syscall/js"
+
+	"github.com/ParvinEyvazov/ghost-url/core"
+	"github.com/ParvinEyvazov/ghost-url/url"
 )
 
 func main() {
@@ -15,7 +18,20 @@ func main() {
 
 func ghostUrl(this js.Value, args []js.Value) interface{} {
 
-	return "test output"
+	urlText := (args[0]).String()
+
+	isValid := url.Valid(urlText)
+
+	if !isValid {
+		return ""
+	}
+
+	encryptedText, err := core.Encrypt(urlText)
+	if err != nil {
+		return ""
+	}
+
+	return encryptedText
 }
 
 func recoverUrl(this js.Value, args []js.Value) interface{} {
