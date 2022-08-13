@@ -4,15 +4,7 @@
 
     <meta charset="utf-8" />
     <script src="wasm_exec.js"></script>
-    <script>
-      const go = new Go();
-      WebAssembly.instantiateStreaming(
-        fetch("main.wasm"),
-        go.importObject
-      ).then((result) => {
-        go.run(result.instance);
-      });
-    </script>
+    <script src="loadWasm.js"></script>
   </head>
 
   <body>
@@ -64,6 +56,24 @@
     </div>
 
     <script>
+      (async () => {
+        await init();
+
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+          get: (searchParams, prop) => searchParams.get(prop),
+        });
+
+        if (params.d != undefined && params.d != "") {
+          let direct_url = recoverUrl(window.location.href);
+
+          if (direct_url != undefined && direct_url != "") {
+            window.location.replace(direct_url);
+          }
+        }
+      })().catch((e) => {
+        console.log(e);
+      });
+
       var url = document.querySelector("#url");
       var short_url = document.querySelector("#short-url");
       var text_container = document.querySelector(".copy-text");

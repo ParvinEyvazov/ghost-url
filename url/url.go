@@ -9,7 +9,7 @@ type Routes map[string]string
 
 var RoutesMap Routes = Routes{
 	"encryption": "/",
-	"decryption": "/d/",
+	"decryption": "?d=",
 }
 
 var _SPLITTER string = RoutesMap["decryption"]

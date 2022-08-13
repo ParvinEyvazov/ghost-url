@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"syscall/js"
 
 	"github.com/ParvinEyvazov/ghost-url/core"
@@ -38,5 +39,15 @@ func ghostUrl(this js.Value, args []js.Value) interface{} {
 
 func recoverUrl(this js.Value, args []js.Value) interface{} {
 
-	return "test recover output"
+	encrptedFullUrlText := (args[0]).String()
+
+	encrptedUrlText := url.Parse(encrptedFullUrlText)
+
+	decryptedURL, err := core.Decrypt(encrptedUrlText)
+
+	if err != nil {
+		log.Panic("ERROR: Decryption error", err)
+	}
+
+	return decryptedURL
 }
