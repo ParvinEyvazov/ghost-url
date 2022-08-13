@@ -14,9 +14,9 @@ var RoutesMap Routes = Routes{
 
 var _SPLITTER string = RoutesMap["decryption"]
 
-var HOST string = "http://localhost:3000"
+// var HOST string = "http://localhost:3000"
 
-// var HOST string = "https://ghost-url.netlify.app"
+var HOST string = "https://ghost-url.netlify.app"
 
 func Valid(text string) (isValid bool) {
 	_, err := url.ParseRequestURI(text)
