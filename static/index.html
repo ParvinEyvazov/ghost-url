@@ -23,7 +23,7 @@
     <div class="container">
       <div class="input-container">
         <div class="error-message-container">
-          <h1 id="error-message">Please enter a url</h1>
+          <h1 id="error-message"></h1>
         </div>
 
         <div class="webflow-style-input">
@@ -45,9 +45,14 @@
           </a>
         </div>
 
-        <div class="text-container webflow-style-input copy-text">
-          <span id="short-url">asdsadasd</span>
-          <a href="#" class="animated-button copy-button">
+        <div
+          class="text-container webflow-style-input copy-text"
+          style="display: none"
+        >
+          <span id="short-url"
+            >https://ghost-url.netlify.app/AAAAAAAAAAB8tvRxf5ttfCjnZ8lWSWbu/3EBDctOA53BxB6BCPuXuGLnpYok1FwAOrCjELSealQ=</span
+          >
+          <a class="animated-button copy-button">
             <span></span>
             <span></span>
             <span></span>
@@ -61,14 +66,53 @@
     <script>
       var url = document.querySelector("#url");
       var short_url = document.querySelector("#short-url");
+      var text_container = document.querySelector(".copy-text");
+      var error_message = document.querySelector("#error-message");
+
+      if (short_url.innerHTML == "" || short_url.innerHTML == undefined) {
+        text_container.style.display = "none";
+      }
 
       document
         .getElementById("create-button")
         .addEventListener("click", async function () {
           let a = ghostUrl(url.value);
 
-          short_url.innerHTML = a;
+          if (a != "" && a != undefined) {
+            cleanError();
+            text_container.style.display = "inline-block";
+            short_url.innerHTML = a;
+          } else {
+            showError("Please enter a valid url");
+          }
         });
+
+      text_container.addEventListener("click", () => {
+        copyMessage(short_url.innerHTML);
+      });
+
+      function showError(message) {
+        error_message.innerHTML = "Please enter a valid url";
+      }
+
+      function cleanError() {
+        error_message.innerHTML = "";
+      }
+
+      // copy to clipboard
+      function copyMessage(string) {
+        const selBox = document.createElement("textarea");
+        selBox.style.position = "fixed";
+        selBox.style.left = "0";
+        selBox.style.top = "0";
+        selBox.style.opacity = "0";
+        selBox.value = string;
+        document.body.appendChild(selBox);
+        selBox.focus();
+        selBox.select();
+        document.execCommand("copy");
+        document.body.removeChild(selBox);
+      }
     </script>
   </body>
 </html>
