@@ -31,7 +31,9 @@ func ghostUrl(this js.Value, args []js.Value) interface{} {
 		return ""
 	}
 
-	return encryptedText
+	finalURL := url.Create(encryptedText)
+
+	return finalURL
 }
 
 func recoverUrl(this js.Value, args []js.Value) interface{} {

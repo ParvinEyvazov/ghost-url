@@ -13,24 +13,19 @@ type IServer interface {
 type Server struct {
 }
 
-const HOST string = ""
-
 func main() {
 
 	server := NewServer()
 
 	server.start()
-
-	// r.Host
-
 }
 
 func (*Server) start() {
 	fs := http.FileServer(http.Dir("./static"))
 	fmt.Println()
-	http.Handle("/ghost", fs)
+	http.Handle("/", fs)
 
-	log.Println("Listening on http://localhost:3000/index.html")
+	log.Println("Listening on http://localhost:3000")
 	err := http.ListenAndServe("localhost:3000", nil)
 	if err != nil {
 		log.Fatal(err)

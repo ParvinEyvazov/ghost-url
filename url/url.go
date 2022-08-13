@@ -7,6 +7,8 @@ import (
 
 const _SPLITTER = "/"
 
+var HOST string = "https://ghost-url.netlify.app"
+
 func Valid(text string) (isValid bool) {
 	_, err := url.ParseRequestURI(text)
 
@@ -17,16 +19,16 @@ func Valid(text string) (isValid bool) {
 	return
 }
 
-func Create(host, encrypted string) string {
+func Create(encrypted string) string {
 
-	return host + _SPLITTER + encrypted
+	return HOST + _SPLITTER + encrypted
 }
 
-func Parse(text string) (host, encrypted string) {
+// TODO: should be improved
+func Parse(text string) (encrypted string) {
 
 	texts := strings.Split(text, _SPLITTER)
 
-	host = texts[0]
 	encrypted = texts[1]
 
 	return
